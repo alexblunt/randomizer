@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рандомайзер "Да или Нет"</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        button { font-size: 18px; padding: 10px 20px; cursor: pointer; }
+        #answer { font-size: 24px; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>Рандомайзер "Да или Нет"</h1>
+    <p>Задай вопрос в мыслях и нажми кнопку!</p>
+    
+    <button onclick="getRandomAnswer()">Получить ответ</button>
+    <p id="answer"></p>
+
+    <script>
+        function getRandomAnswer() {
+            fetch("/randomize")
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("answer").textContent = data.answer;
+                });
+        }
+    </script>
+
+</body>
+</html>
